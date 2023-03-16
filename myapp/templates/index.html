@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <title>{% trans "home" %}</title>
+</head>
+<body>
+    <h1>{% trans "Hello World" %}</h1>
+    <h1>{{_("Yes") }}</h1>
+    <h1>{{_("Thanks") }}</h1>
+
+    {% comment %} Este script nos permite traer las funciones en este caso usaremos gettext {% endcomment %}
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <script>
+
+        let error = ['Hello World', 'Yes', 'Thanks']
+
+        {% comment %} Hice un pequeño ejemplo para resolver el tema del modal que es un array de errores  {% endcomment %}
+        var newError = error.map(function(err) {
+            return gettext(err)
+         });
+
+         
+         console.log(newError)
+         console.log(newError.join(', '))
+        document.write(newError.join(', '));
+    </script>
+</body>
+</html>
